@@ -11,6 +11,10 @@ Game::Game(sf::RenderWindow& window) {
     for (int i = 0; i < A_HEIGHT; i++) {
         *(array + i) = new bool[A_WIDTH];
     }
+    next = new bool*[A_HEIGHT];
+    for (int i = 0; i < A_HEIGHT; i++) {
+        *(next + i) = new bool[A_WIDTH];
+    }
 
     image.create(WIDTH, HEIGHT);
     texture.loadFromImage(image);
@@ -26,6 +30,11 @@ Game::~Game() {
         delete[] array[i];
     }
     delete[] array;
+
+    for (int i = 0; i < A_HEIGHT; i++) {
+        delete[] next[i];
+    }
+    delete[] next;
 }
 
 /**
@@ -74,11 +83,6 @@ void Game::imageFromArray() {
  *  Update the image to the next state
  **/
 void Game::nextState() {
-    bool** next = new bool*[A_HEIGHT];
-    for (int i = 0; i < A_HEIGHT; i++) {
-        *(next + i) = new bool[A_WIDTH];
-    }
-
     for (int y = 0; y < A_HEIGHT; y++) {
         for (int x = 0; x < A_WIDTH; x++) {
             int count = count_cells(x, y);
@@ -89,17 +93,11 @@ void Game::nextState() {
             }
         }
     }
-    // array = next;
     for (int y = 0; y < A_HEIGHT; y++) {
         for (int x = 0; x < A_WIDTH; x++) {
             array[y][x] = next[y][x];
         }
     }
-    for (int i = 0; i < A_HEIGHT; i++) {
-        delete[] next[i];
-    }
-    delete[] next;
-
     for (int y = 0; y < HEIGHT; y+=CELL_SIZE) {
         for (int x = 0; x < WIDTH; x+=CELL_SIZE) {
             int array_x = x / CELL_SIZE;

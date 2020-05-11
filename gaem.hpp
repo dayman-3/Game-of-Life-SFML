@@ -10,6 +10,7 @@ class Game
 {
     private:
         bool** array;
+        bool** next;
 
         sf::Image image;
         sf::Texture texture;
