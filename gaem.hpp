@@ -1,8 +1,8 @@
 #include <SFML/Graphics.hpp>
 
 #define CELL_SIZE 5
-#define WIDTH 800
-#define HEIGHT 600
+#define WIDTH 1200
+#define HEIGHT 1000
 #define A_WIDTH WIDTH / CELL_SIZE
 #define A_HEIGHT HEIGHT / CELL_SIZE
 

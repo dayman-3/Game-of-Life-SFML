@@ -1,6 +1,7 @@
 #include "gaem.hpp"
+#include <iostream>
 
-#define DELTA 0.1
+#define DELTA 0.005
 
 int main(int argc, char** argv)
 {
@@ -12,14 +13,27 @@ int main(int argc, char** argv)
     while (appWindow.isOpen()) {
         sf::Event appEvent;
         while (appWindow.pollEvent(appEvent)) {
-            if (appEvent.type == sf::Event::Closed) appWindow.close();
+            switch(appEvent.type) {
+                case sf::Event::Closed:
+                    appWindow.close();
+                    break;
+                case sf::Event::KeyPressed:
+                    if (appEvent.key.code == sf::Keyboard::R) gaem.randomState();
+                    if (appEvent.key.code == sf::Keyboard::Q) appWindow.close();
+                    break;
+                default:
+                    break;
+            }
+            // if (appEvent.type == sf::Event::Closed) appWindow.close();
         }
         sf::Time t = timer.getElapsedTime(); 
         if (t > delta) {
             gaem.update(appWindow);
             gaem.nextState();
+            // std::cout << t.asMicroseconds() << "\n";
             timer.restart();
             appWindow.display();
+            
         }
     }
 

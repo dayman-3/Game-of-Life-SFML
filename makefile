@@ -7,13 +7,10 @@ LIBS = -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lwinmm -lgd
 OBJ = main.o gaem.o
 
 $(TARGET) : $(OBJ)
-	$(CC) $(OBJ) $(CFLAGS) $(INCLUDEPATH) $(LIBPATH) $(LIBS) -o life.exe
+	$(CC) $(OBJ) $(CFLAGS) $(INCLUDEPATH) $(LIBPATH) $(LIBS) -o life.exew
 
 main.o : main.cpp gaem.hpp
 	$(CC) main.cpp -c $(CFLAGS) $(INCLUDEPATH) $(LIBPATH) $(LIBS)
 
 gaem.o : gaem.cpp gaem.hpp
 	$(CC) gaem.cpp -c $(CFLAGS) $(INCLUDEPATH) $(LIBPATH) $(LIBS)
-
-clean :
-	rm $(TARGET) $(OBJ)

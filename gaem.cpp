@@ -67,7 +67,7 @@ void Game::imageFromArray() {
         {
             int array_x = x / CELL_SIZE;
             int array_y = y / CELL_SIZE;
-            sf::Color cell = array[array_y][array_x] ? sf::Color::Black : sf::Color::White;
+            sf::Color cell = array[array_y][array_x] ? sf::Color::White : sf::Color::Black;
             for (int yi = 0; yi < CELL_SIZE; yi++)
             {
                 for (int xi = 0; xi < CELL_SIZE; xi++)
@@ -102,7 +102,7 @@ void Game::nextState() {
         for (int x = 0; x < WIDTH; x+=CELL_SIZE) {
             int array_x = x / CELL_SIZE;
             int array_y = y / CELL_SIZE;
-            sf::Color colour = array[array_y][array_x] ? sf::Color::Black : sf::Color::White;
+            sf::Color colour = array[array_y][array_x] ? sf::Color::White : sf::Color::Black;
             for (int yi = 0; yi < CELL_SIZE; yi++) {
                 for (int xi = 0; xi < CELL_SIZE; xi++) {
                     image.setPixel(x+xi, y+yi, colour);
@@ -127,6 +127,7 @@ int Game::count_cells(int x, int y) {
         if (array[y+1][x-1]) count++;
         if (array[y][x-1]) count++;
     }
+    
     return count;
 }
 
